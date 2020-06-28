@@ -29,6 +29,8 @@ class NoteDetailState extends State<NoteDetail> {
 
 	TextEditingController titleController = TextEditingController();
 	TextEditingController descriptionController = TextEditingController();
+	TextEditingController descriptionAddress = TextEditingController();
+	TextEditingController descriptionPincode = TextEditingController();
 
 	NoteDetailState(this.note, this.appBarTitle);
 
@@ -39,6 +41,8 @@ class NoteDetailState extends State<NoteDetail> {
 
 		titleController.text = note.title;
 		descriptionController.text = note.description;
+		descriptionAddress.text = note.address;
+		descriptionPincode.text = note.pincode;
 
 		return WillPopScope(
 
@@ -62,6 +66,29 @@ class NoteDetailState extends State<NoteDetail> {
 						padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
 						child: ListView(
 							children: <Widget>[
+
+								//Zero Element
+								ListTile(
+									title: DropdownButton(
+											items: _priorities.map((String dropDownStringItem) {
+												return DropdownMenuItem<String> (
+													value: dropDownStringItem,
+													child: Text(dropDownStringItem),
+												);
+											}).toList(),
+
+											style: textStyle,
+
+											value: getPriorityAsString(note.priority),
+
+											onChanged: (valueSelectedByUser) {
+												setState(() {
+													debugPrint('User selected $valueSelectedByUser');
+													updatePriorityAsInt(valueSelectedByUser);
+												});
+											}
+									),
+								),
 
 								// First Element
 								Padding(
@@ -107,7 +134,7 @@ class NoteDetailState extends State<NoteDetail> {
 								Padding(
 									padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
 									child: TextField(
-										controller: descriptionController,
+										controller: descriptionAddress,
 										style: textStyle,
 										onChanged: (value) {
 											debugPrint('Something changed in Address Text Field');
@@ -127,7 +154,7 @@ class NoteDetailState extends State<NoteDetail> {
 								Padding(
 									padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
 									child: TextField(
-										controller: descriptionController,
+										controller: descriptionPincode,
 										style: textStyle,
 										onChanged: (value) {
 											debugPrint('Something changed in Pincode Text Field');

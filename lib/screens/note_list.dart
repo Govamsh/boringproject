@@ -32,7 +32,7 @@ class NoteListState extends State<NoteList> {
 		return Scaffold(
 
 			appBar: AppBar(
-				title: Text('BoreWells Registration'),
+				title: Text('      BoreWells Registration'),
 			),
 
 			body: getNoteListView(),
@@ -40,7 +40,7 @@ class NoteListState extends State<NoteList> {
 			floatingActionButton: FloatingActionButton(
 				onPressed: () {
 					debugPrint('FAB clicked');
-					navigateToDetail(Note('', '', 2), 'Booking details');
+					navigateToDetail(Note('', '', 2, '', ''), 'Booking details');
 				},
 
 				tooltip: 'Booking details',

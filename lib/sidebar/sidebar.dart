@@ -180,7 +180,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   }
 }
 
-class CustomMenuClipper extends CustomClipper<Path>{
+class CustomMenuClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Paint paint = Paint();
@@ -196,11 +196,11 @@ class CustomMenuClipper extends CustomClipper<Path>{
     path.quadraticBezierTo(width+1, height/2+20, 10, height-16);
     path.quadraticBezierTo(0, height - 8, 0, height);
     path.close();
-    return null;
+    return path;
   }
 
   @override
-  bool shouldReclip(CustomClipper oldClipper) {
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
     return true;
   }
 

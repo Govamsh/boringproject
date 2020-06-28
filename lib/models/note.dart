@@ -6,10 +6,12 @@ class Note {
   String _description;
   String _date;
   int _priority;
+  String _address;
+  String _pincode;
 
-  Note(this._title, this._date, this._priority, [this._description]);
+  Note(this._title, this._date, this._priority, this._address, this._pincode, [this._description]);
 
-  Note.withId(this._id, this._title, this._date, this._priority, [this._description]);
+  Note.withId(this._id, this._title, this._date, this._priority, this._address, this._pincode, [this._description]);
 
   int get id => _id;
 
@@ -20,6 +22,10 @@ class Note {
   int get priority => _priority;
 
   String get date => _date;
+
+  String get address => _address;
+
+  String get pincode => _pincode;
 
   set title(String newTitle) {
     if (newTitle.length <= 255) {
@@ -39,6 +45,18 @@ class Note {
     }
   }
 
+  set address(String newAddress) {
+    if (newAddress.length <= 255) {
+      this._address = newAddress;
+    }
+  }
+
+  set pincode(String newPincode) {
+    if (newPincode.length == 6) {
+      this._pincode = newPincode;
+    }
+  }
+
   set date(String newDate) {
     this._date = newDate;
   }
@@ -54,6 +72,8 @@ class Note {
     map['description'] = _description;
     map['priority'] = _priority;
     map['date'] = _date;
+    map['address'] = _address;
+    map['pincode'] = _pincode;
 
     return map;
   }
@@ -65,14 +85,8 @@ class Note {
     this._description = map['description'];
     this._priority = map['priority'];
     this._date = map['date'];
+    this._address = map['address'];
+    this._pincode = map['pincode'];
   }
 }
-
-
-
-
-
-
-
-
 
